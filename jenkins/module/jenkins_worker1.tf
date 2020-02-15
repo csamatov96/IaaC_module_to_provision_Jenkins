@@ -5,7 +5,7 @@ resource "aws_instance" "jenkins_worker1" {
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
 
-  /*provisioner "file" {
+  provisioner "file" {
     connection {
       host        = "${self.public_ip}"
       type        = "ssh"
@@ -31,7 +31,7 @@ resource "aws_instance" "jenkins_worker1" {
       "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
       "sudo yum install jenkins -y",
       "sudo systemctl start jenkins",
-      "# These commands below installs docker and configure",
+      /*"# These commands below installs docker and configure",
       "sudo curl -fsSL https://get.docker.com/ | sh",
       "sudo systemctl enable docker",
       "sudo systemctl start docker",
@@ -60,9 +60,9 @@ resource "aws_instance" "jenkins_worker1" {
       "sudo yum install python-pip -y",
       "sudo pip install awscli",
       "sudo yum install git -y",
-      "sudo chmod 777 /var/lib/jenkins/",
+      "sudo chmod 777 /var/lib/jenkins/",*/
     ]
-  }*/
+  }
 
   tags = {
     Name = "Jenkins worker1"

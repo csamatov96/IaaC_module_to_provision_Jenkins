@@ -32,7 +32,7 @@ resource "aws_instance" "jenkins_master" {
     }
 
     source      = "~/.ssh"
-    destination = "/tmp/"
+    destination = "/tmp/" ###############################################
   }
 
 
