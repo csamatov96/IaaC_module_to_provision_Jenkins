@@ -9,7 +9,7 @@ output "worker1" {
 output "worker2" {
   value = " http://${aws_route53_record.jenkins_worker2.name}:8080"
 }
-
+/*
 output "worker3" {
   value = " http://${aws_route53_record.jenkins_worker3.name}:8080"
 }
@@ -30,4 +30,4 @@ output "stage1" {
 output "prod1" {
   value = " http://${aws_route53_record.prod1.name}"
 }
-
+*/

@@ -1,5 +1,5 @@
 # Below code is used to set backend only
-s3_bucket                       =	"ato4i-iaac"
+s3_bucket                       =	"us-east-1-task"
 s3_folder_region                =	"us-east-1"
 vpc_id		    	            =	"vpc-3b472741" #default 
 zone_id			                =	"Z6XWWD56QDJWX" 

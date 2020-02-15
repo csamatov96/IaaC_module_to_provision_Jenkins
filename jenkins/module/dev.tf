@@ -1,4 +1,4 @@
-resource "aws_instance" "dev1" {
+/*resource "aws_instance" "dev1" {
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
@@ -51,4 +51,4 @@ resource "aws_instance" "dev1" {
   tags = {
     Name = "dev1"              
   }
-}
+}*/

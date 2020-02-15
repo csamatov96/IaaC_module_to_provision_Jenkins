@@ -1,6 +1,6 @@
 data "aws_ami" "centos" {
   most_recent = true
-  owners      = ["679593333241"] #
+  owners      = ["amazon"] #
 
   filter {
     name   = "state"
@@ -9,7 +9,7 @@ data "aws_ami" "centos" {
 
   filter {
     name   = "name"
-    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
+    values = ["amzn-ami-2018.03.e-amazon-ecs-optimized"]
   }
 }
 
@@ -54,7 +54,7 @@ resource "aws_instance" "jenkins_master" {
         "sudo systemctl start jenkins",
 
 
-	"# These commands below installs docker and configure",
+	/*"# These commands below installs docker and configure",
         "sudo curl -fsSL https://get.docker.com/ | sh",
 	"sudo systemctl enable docker", 
 	"sudo systemctl start docker",
@@ -78,7 +78,7 @@ resource "aws_instance" "jenkins_master" {
 	"wget -P /tmp https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip",
 	"unzip /tmp/terraform_0.11.14_linux_amd64.zip",
 	"sudo mv terraform /bin",
-	"terraform version",
+	"terraform version",*/
 
         "# These commands below used for disabling host key verification",
         "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
