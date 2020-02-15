@@ -57,7 +57,7 @@ resource "aws_instance" "jenkins_master" {
 	/*"# These commands below installs docker and configure",
         "sudo curl -fsSL https://get.docker.com/ | sh",
 	"sudo systemctl enable docker", 
-	"sudo systemctl start docker",                                      ???????????????????????
+	"sudo systemctl start docker",                                     
         "sudo usermod -aG docker  -s /bin/bash jenkins", 
 	"sudo cp -r /etc/skel/.*	/var/lib/jenkins",
         "sudo usermod -aG docker jenkins", 
