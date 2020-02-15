@@ -1,4 +1,4 @@
-resource "aws_instance" "jenkins_worker2" {
+resource "aws_instance" "jenkins_worker3" {
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
@@ -65,6 +65,6 @@ resource "aws_instance" "jenkins_worker2" {
   }
 
   tags = {
-    Name = "Jenkins worker2"
+    Name = "Jenkins worker3"
   }
 }

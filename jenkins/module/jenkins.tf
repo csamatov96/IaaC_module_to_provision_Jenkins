@@ -1,6 +1,6 @@
-data "aws_ami" "amazon" {
+data "aws_ami" "centos" {
   most_recent = true
-  owners      = ["amazon"] #
+  owners      = ["679593333241"] #
 
   filter {
     name   = "state"
@@ -9,14 +9,14 @@ data "aws_ami" "amazon" {
 
   filter {
     name   = "name"
-    values = ["amzn-ami-2018.03.e-amazon-ecs-optimized"]
+    values = ["CentOS Linux 7 x86_64 HVM EBS *"]
   }
 }
 
 resource "aws_instance" "jenkins_master" {
   depends_on                  = ["aws_key_pair.jenkins"]
   instance_type               = "${var.instance_type}"
-  ami                         = "${data.aws_ami.amazon.id}"
+  ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
@@ -32,7 +32,7 @@ resource "aws_instance" "jenkins_master" {
     }
 
     source      = "~/.ssh"
-    destination = "/tmp/" ###############################################
+    destination = "/tmp/"
   }
 
 
@@ -54,7 +54,7 @@ resource "aws_instance" "jenkins_master" {
         "sudo systemctl start jenkins",
 
 
-	/*"# These commands below installs docker and configure",
+	"# These commands below installs docker and configure",
         "sudo curl -fsSL https://get.docker.com/ | sh",
 	"sudo systemctl enable docker", 
 	"sudo systemctl start docker",
@@ -78,7 +78,7 @@ resource "aws_instance" "jenkins_master" {
 	"wget -P /tmp https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip",
 	"unzip /tmp/terraform_0.11.14_linux_amd64.zip",
 	"sudo mv terraform /bin",
-	"terraform version",*/
+	"terraform version",
 
         "# These commands below used for disabling host key verification",
         "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",

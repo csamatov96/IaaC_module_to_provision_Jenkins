@@ -1,6 +1,6 @@
 resource "aws_instance" "jenkins_worker1" {
   instance_type               = "${var.instance_type}"
-  ami                         = "${data.aws_ami.amazon.id}"
+  ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
@@ -31,7 +31,7 @@ resource "aws_instance" "jenkins_worker1" {
       "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
       "sudo yum install jenkins -y",
       "sudo systemctl start jenkins",
-      /*"# These commands below installs docker and configure",
+      "# These commands below installs docker and configure",
       "sudo curl -fsSL https://get.docker.com/ | sh",
       "sudo systemctl enable docker",
       "sudo systemctl start docker",
@@ -60,7 +60,7 @@ resource "aws_instance" "jenkins_worker1" {
       "sudo yum install python-pip -y",
       "sudo pip install awscli",
       "sudo yum install git -y",
-      "sudo chmod 777 /var/lib/jenkins/",*/
+      "sudo chmod 777 /var/lib/jenkins/",
     ]
   }
 

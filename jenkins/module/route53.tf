@@ -5,7 +5,7 @@ resource "aws_route53_record" "jenkins_master" {
   ttl     = "60"
   records = ["${aws_instance.jenkins_master.public_ip}"]
 }
-/*resource "aws_route53_record" "dev1"             {
+resource "aws_route53_record" "dev1"             {
   zone_id = "${var.zone_id}"
   name    = "dev1.${var.domain}"
   type    = "A"
@@ -35,7 +35,7 @@ resource "aws_route53_record" "prod1" {
   type    = "A"
   ttl     = "60"
   records = ["${aws_instance.prod1.public_ip}"]
-}*/
+}
 resource "aws_route53_record" "jenkins_worker1" {
   zone_id = "${var.zone_id}"
   name    = "jenkins_worker1.${var.domain}"
@@ -51,11 +51,11 @@ resource "aws_route53_record" "jenkins_worker2" {
   ttl     = "60"
   records = ["${aws_instance.jenkins_worker2.public_ip}"]
 }
-/*
+
 resource "aws_route53_record" "jenkins_worker3" {
   zone_id = "${var.zone_id}"
   name    = "jenkins_worker3.${var.domain}"
   type    = "A"
   ttl     = "60"
   records = ["${aws_instance.jenkins_worker3.public_ip}"]
-}*/
+}

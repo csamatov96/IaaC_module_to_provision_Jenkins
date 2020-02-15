@@ -1,9 +1,11 @@
-resource "aws_instance" "jenkins_worker2" {
+
+resource "aws_instance" "prod1"            {
   instance_type               = "${var.instance_type}"
   ami                         = "${data.aws_ami.centos.id}"
   key_name                    = "${var.key_name}"
   associate_public_ip_address = "true"
   security_groups             = ["allow_ssh_and_jenkins"]
+  iam_instance_profile = "${aws_iam_instance_profile.jenkins_profile.name}"
 
   provisioner "file" {
     connection {
@@ -26,11 +28,6 @@ resource "aws_instance" "jenkins_worker2" {
     }
 
     inline = [
-      "sudo yum install java-1.8.0-openjdk-devel curl -y",
-      "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
-      "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
-      "sudo yum install jenkins -y",
-      "sudo systemctl start jenkins",
       "# These commands below installs docker and configure",
       "sudo curl -fsSL https://get.docker.com/ | sh",
       "sudo systemctl enable docker",
@@ -39,18 +36,6 @@ resource "aws_instance" "jenkins_worker2" {
       "sudo cp -r /etc/skel/.*	/var/lib/jenkins",
       "sudo usermod -aG docker jenkins",
       "sudo chmod 777 /var/run/docker.sock",
-      "# Installs packer",
-      "sudo yum install wget unzip -y",
-      "wget -P /tmp https://releases.hashicorp.com/packer/1.5.1/packer_1.5.1_linux_amd64.zip",
-      "unzip /tmp/packer_1.5.1_linux_amd64.zip",
-      "sudo rm  /sbin/packer &>/dev/null  ",
-      "sudo mv packer /bin",
-      "packer version",
-      "# These commands below installs terraform",
-      "wget -P /tmp https://releases.hashicorp.com/terraform/0.11.14/terraform_0.11.14_linux_amd64.zip",
-      "unzip /tmp/terraform_0.11.14_linux_amd64.zip",
-      "sudo mv terraform /bin",
-      "terraform version",
       "# These commands below used for disabling host key verification",
       "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
       "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
@@ -65,6 +50,6 @@ resource "aws_instance" "jenkins_worker2" {
   }
 
   tags = {
-    Name = "Jenkins worker2"
+    Name = "prod_jenkins"    
   }
 }
