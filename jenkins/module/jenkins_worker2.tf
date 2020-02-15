@@ -30,7 +30,7 @@ resource "aws_instance" "jenkins_worker2" {
       "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
       "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
       "sudo yum install jenkins -y",
-      "sudo systemctl start jenkins",
+      "sudo service jenkins start",
       /*"# These commands below installs docker and configure",
       "sudo curl -fsSL https://get.docker.com/ | sh",
       "sudo systemctl enable docker",

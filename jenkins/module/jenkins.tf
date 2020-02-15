@@ -31,7 +31,7 @@ resource "aws_instance" "jenkins_master" {
       private_key = "${file(var.ssh_key_location)}"
     }
 
-    source      = "~/.ssh"
+    source      = "~/.ssh" ############################################################
     destination = "/tmp/"
   }
 
@@ -51,7 +51,7 @@ resource "aws_instance" "jenkins_master" {
         "curl --silent --location http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo | sudo tee /etc/yum.repos.d/jenkins.repo",
         "sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key",
         "sudo yum install jenkins -y",
-        "sudo systemctl start jenkins",
+        "sudo service jenkins start",
 
 
 	/*"# These commands below installs docker and configure",
@@ -81,7 +81,7 @@ resource "aws_instance" "jenkins_master" {
 	"terraform version",*/
 
         "# These commands below used for disabling host key verification",
-        "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null",
+        "sudo mv /tmp/.ssh /var/lib/jenkins/ &> /dev/null", #####################################################
         "sudo chown -R jenkins:jenkins /var/lib/jenkins/",
 	"sudo chmod 0600 /var/lib/jenkins/.ssh/id_rsa",
 
